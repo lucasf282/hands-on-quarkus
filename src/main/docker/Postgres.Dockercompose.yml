@@ -1,10 +1,29 @@
+version: '3'
 services:
   postgres:
-    image: postgres
+    image: postgres:alpine3.18
     volumes:
-      - ./01-basegeografica.sql:/docker-entrypoint-initdb.d/01-basegeografica.sql
-      - ./02-basegeografica.sql:/docker-entrypoint-initdb.d/02-basegeografica.sql
+      - /Users/lucas/Documents/Workspace/quarkus/PostgreSQL:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: "Postgres2022!"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "admin123"
     ports:
       - "5432:5432"
+    networks:
+      - postgres-compose-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin123"
+    ports:
+      - "5050:80"
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
