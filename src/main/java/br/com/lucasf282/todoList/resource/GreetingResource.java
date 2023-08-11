@@ -1,4 +1,4 @@
-package br.com.lucasf282;
+package br.com.lucasf282.todoList.resource;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
