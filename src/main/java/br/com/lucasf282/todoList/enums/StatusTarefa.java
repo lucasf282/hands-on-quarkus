@@ -9,14 +9,6 @@ public enum StatusTarefa {
     COMPLETA(3L, "Completa"),
     CANCELADA(4L, "Cancelada");
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     private Long id;
     private String descricao;
 
@@ -25,10 +17,18 @@ public enum StatusTarefa {
         this.descricao = descricao;
     }
 
-    public StatusTarefa getByid(Long id){
+    public static StatusTarefa of(Long id){
         return Arrays.stream(StatusTarefa.values())
                 .filter(statusTarefa -> statusTarefa.id.equals(id))
                 .findFirst()
                 .orElse(StatusTarefa.INDEFINIDO);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }
