@@ -2,26 +2,32 @@ package br.com.lucasf282.todoList.resource;
 
 import br.com.lucasf282.todoList.entity.Projeto;
 import br.com.lucasf282.todoList.service.ProjetoService;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
+import java.util.Optional;
 
 @Path("/projetos")
-@Produces(MediaType.APPLICATION_JSON)
+@Consumes(value = MediaType.APPLICATION_JSON)
+@Produces(value = MediaType.APPLICATION_JSON)
 public class ProjetoResource {
 
-    ProjetoService service = new ProjetoService();
+    @Inject
+    ProjetoService service;
 
     @POST
-    public Response incluir(Projeto projeto){
+    public Response incluir(Projeto projeto) {
         service.incluir(projeto);
         return Response.ok().build();
     }
 
     @PUT
-    public Response atualizar(Projeto projeto){
+    @Path("/{id}")
+    public Response atualizar(@PathParam("id") Long id, Projeto projeto) {
+        projeto.setId(id);
         service.atualizar(projeto);
         return Response.ok().build();
     }
@@ -35,8 +41,12 @@ public class ProjetoResource {
     @GET
     @Path("/{id}")
     public Response consultar(@PathParam("id") Long id) {
-        Projeto projeto = service.consultar(id).orElse(new Projeto());
-        return Response.ok().entity(projeto).build();
+        Optional<Projeto> projeto = service.consultar(id);
+        if(projeto.isPresent()){
+            return Response.ok().entity(projeto).build();
+        }else{
+            return Response.noContent().build();
+        }
     }
 
     @DELETE

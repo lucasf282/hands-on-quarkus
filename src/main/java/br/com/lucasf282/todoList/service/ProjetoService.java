@@ -2,14 +2,19 @@ package br.com.lucasf282.todoList.service;
 
 import br.com.lucasf282.todoList.entity.Projeto;
 import br.com.lucasf282.todoList.repository.ProjetoRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Transactional
+@ApplicationScoped
 public class ProjetoService {
 
-    ProjetoRepository repository = new ProjetoRepository();
+    @Inject
+    ProjetoRepository repository;
 
     public void incluir(Projeto projeto) {
         repository.persist(projeto);
