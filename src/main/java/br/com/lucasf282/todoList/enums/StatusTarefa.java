@@ -1,5 +1,7 @@
 package br.com.lucasf282.todoList.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Arrays;
 
 public enum StatusTarefa {
@@ -28,6 +30,7 @@ public enum StatusTarefa {
         return id;
     }
 
+    @JsonValue
     public String getDescricao() {
         return descricao;
     }
