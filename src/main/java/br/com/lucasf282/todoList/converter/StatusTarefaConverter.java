@@ -1,16 +1,14 @@
 package br.com.lucasf282.todoList.converter;
 
-import br.com.lucasf282.todoList.enums.StatusTarefa;
+import br.com.lucasf282.todoList.enums.StatusTarefaEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-import java.util.stream.Stream;
-
 @Converter(autoApply = true)
-public class StatusTarefaConverter implements AttributeConverter<StatusTarefa, Long> {
+public class StatusTarefaConverter implements AttributeConverter<StatusTarefaEnum, Long> {
 
     @Override
-    public Long convertToDatabaseColumn(StatusTarefa status) {
+    public Long convertToDatabaseColumn(StatusTarefaEnum status) {
         if (status == null) {
             return null;
         }
@@ -18,7 +16,7 @@ public class StatusTarefaConverter implements AttributeConverter<StatusTarefa, L
     }
 
     @Override
-    public StatusTarefa convertToEntityAttribute(Long id) {
-        return StatusTarefa.of(id);
+    public StatusTarefaEnum convertToEntityAttribute(Long id) {
+        return StatusTarefaEnum.of(id);
     }
 }

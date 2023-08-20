@@ -11,7 +11,6 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @ApplicationScoped
 public class ProjetoService {
 

@@ -17,6 +17,6 @@ public class Projeto {
     private String nome;
     private String descricao;
 
-    @OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "projeto", fetch = FetchType.LAZY)
     private List<Tarefa> tarefas;
 }

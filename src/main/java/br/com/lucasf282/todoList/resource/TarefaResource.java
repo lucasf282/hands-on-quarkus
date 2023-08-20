@@ -3,6 +3,7 @@ package br.com.lucasf282.todoList.resource;
 import br.com.lucasf282.todoList.entity.Tarefa;
 import br.com.lucasf282.todoList.service.TarefaService;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -19,6 +20,7 @@ public class TarefaResource {
     TarefaService service;
 
     @POST
+    @Transactional
     public Response incluir(Tarefa tarefa) {
         service.incluir(tarefa);
         return Response.ok().build();
@@ -26,6 +28,7 @@ public class TarefaResource {
 
     @PUT
     @Path("/{id}")
+    @Transactional
     public Response atualizar(@PathParam("id") Long id, Tarefa tarefa) {
         tarefa.setId(id);
         service.atualizar(tarefa);
@@ -51,6 +54,7 @@ public class TarefaResource {
 
     @DELETE
     @Path("/{id}")
+    @Transactional
     public Response delete(@PathParam("id") Long id) {
         service.deletar(id);
         return Response.ok().build();

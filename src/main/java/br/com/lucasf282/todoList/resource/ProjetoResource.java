@@ -4,8 +4,8 @@ import br.com.lucasf282.todoList.entity.Projeto;
 import br.com.lucasf282.todoList.entity.Tarefa;
 import br.com.lucasf282.todoList.enums.DirecaoOrdemEnum;
 import br.com.lucasf282.todoList.service.ProjetoService;
-import br.com.lucasf282.todoList.service.TarefaService;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -22,6 +22,8 @@ public class ProjetoResource {
     ProjetoService service;
 
     @POST
+    @Transactional
+
     public Response incluir(Projeto projeto) {
         service.incluir(projeto);
         return Response.ok().build();
@@ -29,6 +31,7 @@ public class ProjetoResource {
 
     @PUT
     @Path("/{id}")
+    @Transactional
     public Response atualizar(@PathParam("id") Long id, Projeto projeto) {
         projeto.setId(id);
         service.atualizar(projeto);
@@ -59,6 +62,7 @@ public class ProjetoResource {
 
     @DELETE
     @Path("/{id}")
+    @Transactional
     public Response delete(@PathParam("id") Long id) {
         service.deletar(id);
         return Response.ok().build();

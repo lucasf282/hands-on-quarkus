@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Arrays;
 
-public enum StatusTarefa {
+public enum StatusTarefaEnum {
     INDEFINIDO(0L, "Indefinido"),
     ABERTA(1L, "Aberta"),
     FAZENDO(2L, "Fazendo"),
@@ -14,16 +14,16 @@ public enum StatusTarefa {
     private Long id;
     private String descricao;
 
-    StatusTarefa(Long id, String descricao){
+    StatusTarefaEnum(Long id, String descricao){
         this.id = id;
         this.descricao = descricao;
     }
 
-    public static StatusTarefa of(Long id){
-        return Arrays.stream(StatusTarefa.values())
-                .filter(statusTarefa -> statusTarefa.id.equals(id))
+    public static StatusTarefaEnum of(Long id){
+        return Arrays.stream(StatusTarefaEnum.values())
+                .filter(statusTarefaEnum -> statusTarefaEnum.id.equals(id))
                 .findFirst()
-                .orElse(StatusTarefa.INDEFINIDO);
+                .orElse(StatusTarefaEnum.INDEFINIDO);
     }
 
     public Long getId() {

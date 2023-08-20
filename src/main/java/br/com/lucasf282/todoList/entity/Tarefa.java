@@ -1,6 +1,6 @@
 package br.com.lucasf282.todoList.entity;
 
-import br.com.lucasf282.todoList.enums.StatusTarefa;
+import br.com.lucasf282.todoList.enums.StatusTarefaEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class Tarefa {
     private String nome;
     private String descricao;
     @Enumerated(EnumType.ORDINAL)
-    private StatusTarefa status;
+    private StatusTarefaEnum status;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_projeto", insertable=false, updatable=false, nullable = false)
