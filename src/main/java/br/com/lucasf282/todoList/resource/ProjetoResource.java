@@ -2,6 +2,7 @@ package br.com.lucasf282.todoList.resource;
 
 import br.com.lucasf282.todoList.entity.Projeto;
 import br.com.lucasf282.todoList.entity.Tarefa;
+import br.com.lucasf282.todoList.enums.DirecaoOrdemEnum;
 import br.com.lucasf282.todoList.service.ProjetoService;
 import br.com.lucasf282.todoList.service.TarefaService;
 import jakarta.inject.Inject;
@@ -35,8 +36,13 @@ public class ProjetoResource {
     }
 
     @GET
-    public Response listar() {
-        List<Projeto> projetos = service.listar();
+    public Response listar(
+            @QueryParam("order-by") String orderBy,
+            @QueryParam("direction") DirecaoOrdemEnum direction,
+            @QueryParam("page") int page,
+            @QueryParam("size") int pageSize
+    ) {
+        List<Projeto> projetos = service.listar(orderBy, direction, page, pageSize);
         return Response.ok().entity(projetos).build();
     }
 

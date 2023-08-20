@@ -2,6 +2,7 @@ package br.com.lucasf282.todoList.service;
 
 import br.com.lucasf282.todoList.entity.Projeto;
 import br.com.lucasf282.todoList.entity.Tarefa;
+import br.com.lucasf282.todoList.enums.DirecaoOrdemEnum;
 import br.com.lucasf282.todoList.repository.ProjetoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -28,8 +29,8 @@ public class ProjetoService {
         return repository.findByIdOptional(id);
     }
 
-    public List<Projeto> listar() {
-        return repository.listAll();
+    public List<Projeto> listar(String orderBy, DirecaoOrdemEnum direction, int page, int pageSize) {
+        return repository.list(orderBy, direction, page, pageSize);
     }
 
     public void deletar(Long id) {

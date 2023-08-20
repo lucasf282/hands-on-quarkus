@@ -12,7 +12,7 @@ import lombok.Setter;
 @Table(name = "projeto")
 public class Projeto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String nome;
     private String descricao;
