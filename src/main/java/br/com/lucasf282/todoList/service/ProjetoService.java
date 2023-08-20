@@ -1,6 +1,7 @@
 package br.com.lucasf282.todoList.service;
 
 import br.com.lucasf282.todoList.entity.Projeto;
+import br.com.lucasf282.todoList.entity.Tarefa;
 import br.com.lucasf282.todoList.repository.ProjetoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -15,6 +16,9 @@ public class ProjetoService {
 
     @Inject
     ProjetoRepository repository;
+
+    @Inject
+    TarefaService tarefaService;
 
     public void incluir(Projeto projeto) {
         repository.persist(projeto);
@@ -34,5 +38,9 @@ public class ProjetoService {
 
     public void atualizar(Projeto projeto) {
         repository.persist(projeto);
+    }
+
+    public List<Tarefa> listarPorProjeto(Long id) {
+        return tarefaService.listarPorProjeto(id);
     }
 }

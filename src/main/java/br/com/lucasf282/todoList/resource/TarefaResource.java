@@ -33,9 +33,9 @@ public class TarefaResource {
     }
 
     @GET
-    public Response listar(Tarefa tarefa) {
-        List<Tarefa> tarefaResponse = service.listar();
-        return Response.ok().entity(tarefaResponse).build();
+    public Response listar() {
+        List<Tarefa> tarefas = service.listar();
+        return Response.ok().entity(tarefas).build();
     }
 
     @GET

@@ -1,7 +1,9 @@
 package br.com.lucasf282.todoList.resource;
 
 import br.com.lucasf282.todoList.entity.Projeto;
+import br.com.lucasf282.todoList.entity.Tarefa;
 import br.com.lucasf282.todoList.service.ProjetoService;
+import br.com.lucasf282.todoList.service.TarefaService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -33,9 +35,9 @@ public class ProjetoResource {
     }
 
     @GET
-    public Response listar(Projeto projeto) {
-        List<Projeto> projetoResponse = service.listar();
-        return Response.ok().entity(projetoResponse).build();
+    public Response listar() {
+        List<Projeto> projetos = service.listar();
+        return Response.ok().entity(projetos).build();
     }
 
     @GET
@@ -54,5 +56,12 @@ public class ProjetoResource {
     public Response delete(@PathParam("id") Long id) {
         service.deletar(id);
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{id}/tarefas")
+    public Response listar(@PathParam("id") Long id) {
+        List<Tarefa> tarefas = service.listarPorProjeto(id);
+        return Response.ok().entity(tarefas).build();
     }
 }

@@ -6,8 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Transactional
 @ApplicationScoped
@@ -34,5 +33,9 @@ public class TarefaService {
 
     public void atualizar(Tarefa tarefa) {
         repository.persist(tarefa);
+    }
+
+    public List<Tarefa> listarPorProjeto(Long idProjeto) {
+        return repository.listarPorProjeto(idProjeto);
     }
 }
