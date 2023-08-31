@@ -1,5 +1,6 @@
 package br.com.lucasf282.todoList.resource;
 
+import br.com.lucasf282.todoList.Annotation.Split;
 import br.com.lucasf282.todoList.entity.Projeto;
 import br.com.lucasf282.todoList.entity.Tarefa;
 import br.com.lucasf282.todoList.enums.DirecaoOrdemEnum;
@@ -23,7 +24,6 @@ public class ProjetoResource {
 
     @POST
     @Transactional
-
     public Response incluir(Projeto projeto) {
         service.incluir(projeto);
         return Response.ok().build();
@@ -40,6 +40,7 @@ public class ProjetoResource {
 
     @GET
     public Response listar(
+            @QueryParam("teste-split") @Split(".") List<String> testeSplit,
             @QueryParam("order-by") String orderBy,
             @QueryParam("direction") DirecaoOrdemEnum direction,
             @QueryParam("page") int page,
