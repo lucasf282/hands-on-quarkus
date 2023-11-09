@@ -22,6 +22,6 @@ public class Tarefa {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_projeto", insertable=false, updatable=false, nullable = false)
     private Projeto projeto;
-
+    private Long id_projeto;
 }
 

@@ -40,7 +40,6 @@ public class ProjetoResource {
 
     @GET
     public Response listar(
-            @QueryParam("teste-split") @Split(".") List<String> testeSplit,
             @QueryParam("order-by") String orderBy,
             @QueryParam("direction") DirecaoOrdemEnum direction,
             @QueryParam("page") int page,

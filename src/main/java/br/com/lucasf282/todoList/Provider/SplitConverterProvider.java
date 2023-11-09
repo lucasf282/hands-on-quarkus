@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Provider
 public class SplitConverterProvider implements ParamConverterProvider {
@@ -58,6 +59,6 @@ class SplitConverter implements ParamConverter<List<String>> {
 
     @Override
     public String toString(List<String> value) {
-        return value.toString();   // unused
+        return value.stream().collect(Collectors.joining(","));
     }
 }
