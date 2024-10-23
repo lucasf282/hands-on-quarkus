@@ -1,6 +1,8 @@
 package br.com.lucasf282.todoList.resource;
 
+import br.com.lucasf282.todoList.Annotation.Split;
 import br.com.lucasf282.todoList.entity.Tarefa;
+import br.com.lucasf282.todoList.enums.DirecaoOrdemEnum;
 import br.com.lucasf282.todoList.service.TarefaService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -36,7 +38,13 @@ public class TarefaResource {
     }
 
     @GET
-    public Response listar() {
+    public Response listar(
+            @QueryParam("status") @Split(",") List<String> status,
+            @QueryParam("order-by") String orderBy,
+            @QueryParam("direction") DirecaoOrdemEnum direction,
+            @QueryParam("page") int page,
+            @QueryParam("size") int pageSize
+    ) {
         List<Tarefa> tarefas = service.listar();
         return Response.ok().entity(tarefas).build();
     }
